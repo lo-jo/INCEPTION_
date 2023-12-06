@@ -1,0 +1,70 @@
+version: '3.3'
+
+#defining services making up the application
+services:
+        mariadb:
+                image: mariadb
+                container_name: mariadb
+                networks:
+                        - inception
+                build:
+                        context: requirements/mariadb
+                        dockerfile: Dockerfile
+                env_file: .env
+                volumes:
+                        - mariadb:/var/lib/mysql
+                restart : unless-stopped
+                expose:
+                       - "3306"
+        wordpress:
+                image: wordpress
+                container_name: wordpress
+                networks:
+                        - inception
+                build:
+                        context: requirements/wordpress
+                        dockerfile: Dockerfile
+                env_file: .env
+                volumes:
+                        - wordpress:/var/www/wordpress
+                restart : unless-stopped
+                depends_on:
+                        - mariadb
+                expose: 
+                       - "9000"
+        nginx:
+                image: nginx
+                container_name: nginx
+                #virtual network used to connect the containers
+                networks:
+                        - inception
+                build:
+                        context: requirements/nginx
+                        dockerfile: Dockerfile
+                env_file: .env
+                #persistent storage used to store data that should persist after a container is stopped or removed
+                volumes:
+                        - wordpress:/var/www/wordpress
+                restart : unless-stopped
+                #on failure ? > "your containers have to restart in case of a crash"
+                depends_on:
+                       - wordpress
+                ports:
+                        - "443:443"
+volumes:
+        wordpress:
+                driver: local
+                driver_opts:
+                        type: 'none'
+                        o: 'bind'
+                        device: '/home/ljospin/data/wordpress'
+        mariadb:
+                driver: local
+                driver_opts:
+                        type: 'none'
+                        o: 'bind'
+                        device: '/home/ljospin/data/mariadb'
+networks:
+        inception:
+        #bridge is the default network, allows containers to communicate between each other but not the outside world
+                driver: bridge
