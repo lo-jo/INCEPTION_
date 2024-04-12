@@ -3,6 +3,8 @@
 this is my inception 
 i love inceptioning things and also mermaids
 
+[Notion](https://river-weight-158.notion.site/Inception-8b6b536241144669907e9a8b2b7c9723)
+
 # Infrastructure 
 ```mermaid
 graph LR
