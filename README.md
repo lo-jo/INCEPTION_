@@ -3,7 +3,7 @@
 this is my inception 
 i love inceptioning things and also mermaids
 
-# Diagram representation
+# Infrastructure 
 ```mermaid
 graph LR
     WEB[WWW] <--> |443|NX
