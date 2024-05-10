@@ -1,9 +1,11 @@
-# inception
+# Inception
 
-this is my inception 
-i love inceptioning things and also mermaids
+This project consists in setting up a small infrastructure composed of different services under specific rules. It is a simple installation of an LEMP architecture decoupled with docker containers and running on a virtual machine.
 
-[Notion](https://river-weight-158.notion.site/Inception-8b6b536241144669907e9a8b2b7c9723)
+# Services
+- An https server : NGINX with TLSv1.2 or TLSv1.3 only.
+- A content management system : WordPress + php-fpm (installed and configured).
+- A database : MariaDB
 
 # Infrastructure 
 ```mermaid
@@ -43,3 +45,8 @@ graph LR
     WP <--> WPvol
     NX <--> WPvol
 ```
+
+# Useful links
+Notes, documentation plus some extra links on the project are on my notion : 
+[Notion](https://river-weight-158.notion.site/Inception-8b6b536241144669907e9a8b2b7c9723)
+
