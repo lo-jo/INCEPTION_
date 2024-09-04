@@ -1,7 +1,6 @@
 # Inception
 
-This project consists in setting up a small infrastructure composed of different services under specific rules.
-Through this simple installation of an LEMP architecture decoupled with docker containers and running on a virtual machine, I aimed to broaden my knowledge of system administration.
+Installation of an LEMP architecture decoupled with docker containers and running on a virtual machine.
 
 # Services
 - An https server : NGINX with TLSv1.2 or TLSv1.3 only.
